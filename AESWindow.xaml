@@ -1,0 +1,160 @@
+﻿<Window x:Class="Encryptie_Tools.AESWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Encryptie_Tools"
+        mc:Ignorable="d"
+        Title="AES" SizeToContent="WidthAndHeight" ResizeMode="CanMinimize" FontSize="18" FontFamily="Calibri">
+    <Grid Width="500">
+        <Menu>
+            <MenuItem Name="MenuPlainImagesStorage" Header="Plain Images Location" FontStyle="Italic" Click="MenuPlainImagesStorage_Click" Height="24"/>
+            <MenuItem Name="MenuEncryptedImagesStorage" Header="Encrypted Images Location" FontStyle="Italic" Click="MenuEncryptedImagesStorage_Click" Height="24"/>
+            <MenuItem Name="MenuDecryptedImagesStorage" Header="Decrypted Images Location" FontStyle="Italic" Click="MenuDecryptedImagesStorage_Click" Height="24"/>
+        </Menu>
+        <TabControl Margin="0 24 0 0" SelectionChanged="TabControl_SelectionChanged" >
+            <TabItem Header="Encrypt">
+                <DockPanel Margin="10" >
+                    <Grid DockPanel.Dock="Top">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150*"></ColumnDefinition>
+                            <ColumnDefinition Width="150*"></ColumnDefinition>
+                            <ColumnDefinition Width="150*"></ColumnDefinition>
+                            <ColumnDefinition Width="150*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="100"></RowDefinition>
+                            <RowDefinition Height="100"></RowDefinition>
+                            <RowDefinition Height="80"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <GroupBox Header="Key" Grid.RowSpan="2" Grid.ColumnSpan="2" Margin="5">
+                            <Grid Margin="0 5 0 0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="100*"></RowDefinition>
+                                    <RowDefinition Height="100*"></RowDefinition>
+                                </Grid.RowDefinitions>
+
+                                <Button Name="BtnKeyInlezenEncrypt" Height="34" Width="120" Click="BtnKeyInlezenEncrypt_Click">Read</Button>
+                                <Label Name="LblKeyNaamEncrypt" Grid.Row="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="40" Margin="10" FontSize="20" FontFamily="Calibri" FontStyle="Italic">Key Name</Label>
+                            </Grid>
+                        </GroupBox>
+
+                        <GroupBox Header="Image" Grid.Row="0" Grid.RowSpan="2" Grid.Column="2" Grid.ColumnSpan="2" Margin="5">
+                            <StackPanel VerticalAlignment="Center">
+                                <Button Name="BtnKiesImageEncrypt" Click="BtnKiesImageEncrypt_Click" Height="34" Width="140">Choose Image</Button>
+                                <Grid Height="90" Width="160" Margin="10">
+                                    <Border Background="White" BorderBrush="LightGray" BorderThickness="1" CornerRadius="20">
+                                        <Image Name="ImgToEncrypt" Stretch="Fill"/>
+                                    </Border>
+                                    <Grid.Clip>
+                                        <RectangleGeometry RadiusX="20" RadiusY="20" Rect="0,0,160,90"/>
+                                    </Grid.Clip>
+                                </Grid>
+                            </StackPanel>
+                        </GroupBox>
+
+                        <GroupBox Header="Filename" Grid.Row="2" Grid.ColumnSpan="4">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100*"></ColumnDefinition>
+                                    <ColumnDefinition Width="100*"></ColumnDefinition>
+                                    <ColumnDefinition Width="100*"></ColumnDefinition>
+                                    <ColumnDefinition Width="100*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="100*"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                
+                                <TextBox Name="TxtFileNameEncrypt" Grid.ColumnSpan="2" Margin="8 12"></TextBox>
+
+                                <Button Name="BtnEncrypt" Grid.Column="2" Grid.ColumnSpan="4" Width="200" Height="34" Click="BtnEncrypt_Click">Encrypt</Button>
+                            </Grid> 
+                        </GroupBox>
+                    </Grid>
+                </DockPanel>
+            </TabItem>
+
+            <TabItem Header="Decrypt">
+                <DockPanel Margin="10">
+                    <Grid DockPanel.Dock="Top">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150*"></ColumnDefinition>
+                            <ColumnDefinition Width="150*"></ColumnDefinition>
+                            <ColumnDefinition Width="150*"></ColumnDefinition>
+                            <ColumnDefinition Width="150*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="100"></RowDefinition>
+                            <RowDefinition Height="100"></RowDefinition>
+                            <RowDefinition Height="80"></RowDefinition>
+                            <RowDefinition Height="250"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <GroupBox Header="Key" Grid.RowSpan="2" Grid.ColumnSpan="2" Margin="5">
+                            <Grid Margin="0 5 0 0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="100*"></RowDefinition>
+                                    <RowDefinition Height="100*"></RowDefinition>
+                                </Grid.RowDefinitions>
+
+                                <Button Name="BtnKeyInlezenDecrypt" Height="34" Width="120" Click="BtnKeyInlezenDecrypt_Click">Read</Button>
+                                <Label Name="LblKeyNaamDecrypt" Grid.Row="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" FontFamily="Calibri" FontStyle="Italic">Key Name</Label>
+                            </Grid>
+                        </GroupBox>
+
+                        <GroupBox Header="Image" Grid.Row="0" Grid.RowSpan="2" Grid.Column="2" Grid.ColumnSpan="2" Margin="5">
+                            <Grid Margin="0 5 0 0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="100*"></RowDefinition>
+                                    <RowDefinition Height="100*"></RowDefinition>
+                                </Grid.RowDefinitions>
+
+                                <Button Name="BtnKiesImageDecrypt" Height="34" Width="200" Click="BtnKiesImageDecrypt_Click">Choose Encrypted Image</Button>
+                                <Label Name="LblEncryptedFile" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontFamily="Calibri" FontStyle="Italic">.encrypted file</Label>
+                            </Grid>
+                        </GroupBox>
+
+                        <GroupBox Header="Filename" Grid.Row="2" Grid.ColumnSpan="4">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100*"></ColumnDefinition>
+                                    <ColumnDefinition Width="100*"></ColumnDefinition>
+                                    <ColumnDefinition Width="100*"></ColumnDefinition>
+                                    <ColumnDefinition Width="100*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="100*"></RowDefinition>
+                                </Grid.RowDefinitions>
+
+                                <TextBox Name="TxtFileNameDecrypt" Grid.ColumnSpan="2" Margin="8 12"></TextBox>
+
+                                <Button Name="BtnDecrypt" Grid.Column="2" Grid.ColumnSpan="4" Width="200" Height="34" Click="BtnDecrypt_Click">Decrypt</Button>
+                            </Grid>
+                        </GroupBox>
+
+                        <GroupBox Header="Decrypted Image" Grid.Row="4" Grid.ColumnSpan="4">
+                            <Grid Height="190" Width="440" Margin="10">
+                                <Border Background="White" BorderBrush="LightGray" BorderThickness="1" CornerRadius="20">
+                                    <Image Name="ImgDecrypt" Stretch="Fill"/>
+                                </Border>
+                                <Grid.Clip>
+                                    <RectangleGeometry RadiusX="20" RadiusY="20" Rect="0,0,440,190"/>
+                                </Grid.Clip>
+                            </Grid>
+                        </GroupBox>
+                    </Grid>
+                </DockPanel>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

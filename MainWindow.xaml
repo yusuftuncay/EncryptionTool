@@ -1,0 +1,27 @@
+﻿<Window x:Class="Encryptie_Tools.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Encryptie_Tools"
+        mc:Ignorable="d"
+        Title="Encryption Tool" ResizeMode="CanMinimize" SizeToContent="WidthAndHeight" FontSize="18">
+    <DockPanel Height="260" Width="500">
+        <Menu DockPanel.Dock="Top" Height="24" FontStyle="Italic">
+            <MenuItem Name="MenuKeyStorage" Header="Choose Key Location" Click="MenuKeyStorage_Click" Height="24"/>
+            <MenuItem Header="Open AES Window" Click="MenuItemAES_Click"/>
+            <MenuItem Header="Open RSA Window" Click="MenuItemRSA_Click"/>
+        </Menu>
+        <StackPanel VerticalAlignment="Center" Height="220">
+            <GroupBox Header="Key name" Margin="10 0">
+                <StackPanel>
+                    <TextBox Name="TxtSleutel" Margin="10"/>
+                    <StackPanel HorizontalAlignment="Center">
+                        <Button Name="BtnGenereerAES" Content="Generate AES Key" Click="BtnGenereerAES_Click" Width="260" Height="40" Margin="20"/>
+                        <Button Name="BtnGenereerRSA" Content="Generate RSA Key" Click="BtnGenereerRSA_Click" Width="260" Height="40" Margin="0 0 0 20"/>
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+        </StackPanel>
+    </DockPanel>
+</Window>
